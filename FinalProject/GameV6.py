@@ -58,7 +58,23 @@ class Archer(Bunny):
             super().__init__(self)
 
 
+class Arrow():
+    def __init__(self):
+        self.name = "Arrow'
 
+    def launch(self):
+        for bullet in arrows:
+
+            velx = math.cos(bullet[0]) * 10
+            vely = math.sin(bullet[0]) * 10
+            bullet[1] += velx
+            bullet[2] += vely
+            if bullet[1] < 20 or bullet[1] > (width-50) or bullet[2] < 20 or bullet[2] > (height-50):
+                arrows.pop(index)
+
+            for projectile in arrows:
+                arrow1 = pygame.transform.rotate(arrow, 360 - projectile[0] * 57.29)
+                screen.blit(arrow1, (projectile[1], projectile[2]))
 
 # 2 - Initialize the game
 
@@ -69,7 +85,7 @@ screen = pygame.display.set_mode((width, height))
 keys = [False, False, False, False]
 playerpos = [100, 100]
 acc = [0, 0]
-arrows = []
+arrows = [0, 0]
 badtimer = 7
 badtimer1 = 0
 badguys = [[(width+200), 100]]
@@ -117,18 +133,7 @@ while running:
 
 
     # 6.2 - Draw arrows
-    for bullet in arrows:
-        index = 0
-        velx = math.cos(bullet[0]) * 10
-        vely = math.sin(bullet[0]) * 10
-        bullet[1] += velx
-        bullet[2] += vely
-        if bullet[1] < 20 or bullet[1] > (width-50) or bullet[2] < 20 or bullet[2] > (height-50):
-            arrows.pop(index)
-        index += 1
-        for projectile in arrows:
-            arrow1 = pygame.transform.rotate(arrow, 360 - projectile[0] * 57.29)
-            screen.blit(arrow1, (projectile[1], projectile[2]))
+
         # 6.3 - Draw badgers
     if badtimer == 0:
         badtimer = 2
@@ -153,16 +158,16 @@ while running:
         # healthvalue -= 20
         # badguys.pop(index)
 
-        index1 = 0
-        for bullet in arrows:
-            bullrect = pygame.Rect(arrow.get_rect())
-            bullrect.left = bullet[1]
-            bullrect.top = bullet[2]
-            if badrect.colliderect(bullrect):
-                acc[0] += 1
-                badguys.pop(index)
-                arrows.pop(index1)
-            index1 += 1
+        # index1 = 0
+        # for bullet in arrows:
+        #     bullrect = pygame.Rect(arrow.get_rect())
+        #     bullrect.left = bullet[1]
+        #     bullrect.top = bullet[2]
+        #     if badrect.colliderect(bullrect):
+        #         acc[0] += 1
+        #         badguys.pop(index)
+        #         arrows.pop(index1)
+        #     index1 += 1
 
 
 
