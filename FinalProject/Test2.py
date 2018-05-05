@@ -1,21 +1,19 @@
-# Note: Apply to Bunny classes - make many bunny classes - if bunny "withdraws" remove that specific class from list
-class Class():
-    def __init__(self, number):
-        self.name = "Johnathan"
-        self.number = str(number)
+# Notes so far
+''' Why can't append several classes to badguys?
 
-    def sayname(self):
-        print("This is " + self.name + " #" + self.number)
+badguys is a list of coordinates
 
-i = 1
-alphabet = ["a", "b", "c", "d", "e"]
-classes = []
-numbers = [0, 1, 2, 3, 4]
-for number in numbers:
+appending coordinates to badguys
 
-    alphabet[number] = Class(i)
-    classes.append(alphabet[number])
-    i += 1
+We are changing coordinates of bunnies and blitting each bunny to coordinates
 
-for thing in classes:
-    thing.sayname()
+So when we put a class in a list, we can't change them like we can coordinates
+
+Potential Solutions:
+1) Revamp Bunny Class - give spawn coordinates, and in move function change them
+THEN make a bunnies list and fill that list with Bunny() classes
+THEN make a for loop and make each one move
+
+Would need to find out how things get blitted to a ceratin location (check Bunny())
+
+2) Leave as is'''

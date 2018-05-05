@@ -70,6 +70,7 @@ class Bunny():
         self.name = "Bun"
         self.img = pygame.image.load("resources/images/dude.png")
         self.rect = pygame.Rect(self.img.get_rect())
+        self.origin = [100, 100]
 
         # When self.timer hits 0, Bunny shoots an arrow
         self.timeMax = 20
@@ -148,7 +149,7 @@ class Bunny():
                     if self.fairyIFrames <= 0:
                         global healthvalue
                         healthvalue -= 1
-                        lost.play()
+                        # lost.play()
                     self.fairyIFrames = 25
             if self.miss == 5:
                 badguys.pop(0)
@@ -158,9 +159,6 @@ class Bunny():
                 self.miss = 0
 
 # Function that plays when player wins (all bunnies "withdraw") or loses (the player is hit 5 times)
-def end(result):
-    print("You " + result + "!")
-    exit(0)
 
 
 # "2 - Initialize the game" - Julian Meyer, Ray Wenderlich
@@ -179,24 +177,11 @@ badguys = [[(width+200), 100]]
 healthvalue = 5
 a = Bunny()
 b = Player()
-pygame.mixer.init()
-# http://www.moviewavs.com/0093677609/WAVS/TV_Shows/Family_Matters/did_i_do.wav
-# This was probably a terrible idea, but I'm sleepy so it must be worth it somehow.
-lost = pygame.mixer.Sound("resources/audio/did_i_do.wav")
-# http://www.pacdv.com/sounds/applause-sounds/app-32.wav
-won = pygame.mixer.Sound("resources/audio/app-32.wav")
-lost.set_volume(0.05)
-won.set_volume(0.05)
-pygame.mixer.music.load('resources/audio/moonlight.wav')
-pygame.mixer.music.play(-1, 0.0)
-pygame.mixer.music.set_volume(0.25)
 
 # 3 - Load images\
 # Note: Rabbit and Badger images switched around = great results
 grass = pygame.image.load("resources/images/grass.png")
 arrow = pygame.image.load("resources/images/bullet.png")
-healthbar = pygame.image.load("resources/images/healthbar.png")
-health = pygame.image.load("resources/images/health.png")
 
 # 4 - keep looping throu
 # Can sustain ~ 464 bunnies
@@ -228,28 +213,8 @@ while True:
     a.move()
     b.move()
 
-    # 6.5 - Draw health bar
-    screen.blit(healthbar, (5, 5))
-    for health1 in range(int(194*healthvalue/5)):
-        screen.blit(health, (health1 + 8 , 8))
 
     # 7 - update the screen
     pygame.display.flip()
 
-    # 8 - Win/lose conditions
-    #P.S. The quit button doesn't work so just run into the arrows if you want to close the app
-    # Slightly premature fanfare
-    if c == 1 and t == 50:
-        won.play()
-    if c == 0 and t == 50:
-        end("won")
-    if healthvalue <= 0:
-        end("lost")
-
-    # This code doesn't work anymore, but if I worked on it a bit longer it might enable a quit option
-
-    # for event in pygame.event.get():
-    #     if event.type == pygame.QUIT:
-    #         pygame.quit()
-    #         exit(0)
-    # pygame.display.flip()
+    # Research sprite collide
