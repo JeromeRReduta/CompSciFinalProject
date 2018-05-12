@@ -16,7 +16,7 @@ class Player():
     def __init__(self):
         self.name = "Navi"
         self.source = "http://zelda.wikia.com/wiki/Navi"
-        self.img = pygame.image.load("resources/images/dude.png")
+        self.img = pygame.image.load("resources/images/Navi (1).png")
         self.vel = 20
         self.rect = pygame.Rect(self.img.get_rect())
         self.pos = [100, 100]
@@ -202,8 +202,7 @@ health = pygame.image.load("resources/images/health.png")
 # Can sustain ~ 464 bunnies
 c = 1
 t = 1
-while True:
-    badtimer -= 1
+
     # # 5 - clear the screen before drawing it again
     screen.fill(0)
     # 6 - draw the screen elements
@@ -227,23 +226,19 @@ while True:
 
     a.move()
     b.move()
+
     # 6.5 - Draw health bar
     screen.blit(healthbar, (5, 5))
     for health1 in range(int(194*healthvalue/5)):
         screen.blit(health, (health1 + 8 , 8))
 
-    # 7 - update the screens
+    # 7 - update the screen
     pygame.display.flip()
 
     # 8 - Win/lose conditions
     #P.S. The quit button doesn't work so just run into the arrows if you want to close the app
     # Slightly premature fanfare
-    if c == 1 and t == 50:
-        won.play()
-    if c == 0 and t == 50:
-        end("won")
-    if healthvalue <= 0:
-        end("lost")
+
 
     # This code doesn't work anymore, but if I worked on it a bit longer it might enable a quit option
 

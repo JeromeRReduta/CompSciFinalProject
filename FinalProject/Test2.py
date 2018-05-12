@@ -17,3 +17,10 @@ THEN make a for loop and make each one move
 Would need to find out how things get blitted to a ceratin location (check Bunny())
 
 2) Leave as is'''
+
+#Something wrong with pygame, reinstall it and look up "libpng warning: iCCCP: known incorrect sRGB profile"
+# Also reinstall PyCharm
+
+
+for bolt in []:
+    print(bolt)
